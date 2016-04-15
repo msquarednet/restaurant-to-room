@@ -1,0 +1,61 @@
+<div class="textwidget margin-top-30">
+  <h1 ng-bind="vm.restaurant.name"></h1>
+</div>
+<div class="widget">
+  <strong ng-show="!vm.restaurant">Loading...</strong>
+  <input type="submit" value="Checkout" ng-show="vm.items.length" ng-click="vm.checkout()"/>
+  <div class="category" ng-repeat="cat in vm.restaurant.menu">
+    <h2 ng-bind="cat.name"></h2>
+    <ul>
+      <li ng-repeat="item in cat.children">
+        <!--<a href="#"><strong ng-bind="item.name"></strong></a>-->
+        <strong ng-bind="item.name" ng-click="vm.viewItem(item)" class="cursor:pointer;"></strong>
+        - <span ng-bind="item.price"></span> - 
+        <em ng-bind="item.descrip"></em>
+      </li>
+    </ul>
+  </div>
+</div>
+<script type="text/ng-template" id="item.html">
+  <h1 ng-bind="vm.activeItem.name"></h1>
+  <div ng-repeat="optionType in vm.activeItem.children">
+    <strong ng-bind="optionType.name"></strong>
+    <ul>
+      <li ng-repeat="o in optionType.children">
+        <input type="checkbox" ng-click="vm.toggleOption(o)"/>
+        <span ng-bind="o.name + ' - ' + o.price"></span>
+      </li>
+    </ul>
+  </div>
+  <button ng-click="vm.addItem(vm.activeItem)">Add to Order</button>
+  <button ng-click="vm.cancel()">Cancel</button>
+</script>
+
+
+
+
+
+
+<!--
+<div class="textwidget margin-top-30">
+  <h1>Eat Your Veggies Cafe</h1>
+</div>
+<div class="widget">
+  <div class="category">
+    <h2>Classics</h2>
+    <ul>
+      <li><a href="#"><strong>Carrots</strong></a> - 4.00 - <em>root vegetables, usually orange</em></li>
+      <li><a href="#"><strong>Broccoli</strong></a> - 5.50 - <em>green plant in the cabbage family</em></li>
+      <li><a href="#"><strong>Spinach</strong></a> - 8.50 - <em>delicious flowering plant</em></li>
+    </ul>
+  </div>
+  <div class="category">
+    <h2>Oddities</h2>
+    <ul>
+      <li><a href="#"><strong>Romanesco</strong></a> - 8.00 - <em>like a cauliflower with fractals</em></li>
+      <li><a href="#"><strong>Fiddleheads</strong></a> - 3.50 - <em>baby ferns</em></li>
+      <li><a href="#"><strong>Kai-Lan</strong></a> - 2.00 - <em>Chinese broccoli</em></li>
+    </ul>
+  </div>
+</div>
+-->
